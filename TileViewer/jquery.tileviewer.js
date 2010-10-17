@@ -12,11 +12,12 @@ $(function(){
 			}
 		});
 	});
-	$('.noSelect').disableTextSelect();//No text selection on elements with a class of 'noSelect'
 });
 
+// Tile Viewer Plugin follows.
 jQuery.fn.tileviewer = function(options) {
 	var thisDiv = $(this);
+	thisDiv.disableTextSelect();
 	var settings = $.extend({
 		zoomwidth:23,
 		zoomheight:100,
@@ -30,7 +31,7 @@ jQuery.fn.tileviewer = function(options) {
 	$.getJSON(settings['imagedir']+'/settings.json', function(data) {
 		settings = $.extend(settings,data)
 		// global indexes
-		var row=0; var col=1;
+		var ROW=0; var COL=1;
 		
 		// set up canvas elements
 		var canvas = $('<canvas width="'+settings['width']+'" height="'+settings['height']+'" style="position:absolute; top:0; left:0;"></canvas>');
@@ -72,10 +73,10 @@ jQuery.fn.tileviewer = function(options) {
 		var visibles = new Array(settings['levels']);
 		for (var l=0; l<settings['levels']; l++) {
 			visibles[l] = new Array(2);
-			visibles[l][row] = new Array(settings['rows_in_level'][l]);
-			visibles[l][col] = new Array(settings['cols_in_level'][l]);
-			for (var i=0; i<settings['rows_in_level'][l]; i++) visibles[l][row][i] = false;
-			for (var i=0; i<settings['cols_in_level'][l]; i++) visibles[l][col][i] = false;
+			visibles[l][ROW] = new Array(settings['rows_in_level'][l]);
+			visibles[l][COL] = new Array(settings['cols_in_level'][l]);
+			for (var i=0; i<settings['rows_in_level'][l]; i++) visibles[l][ROW][i] = false;
+			for (var i=0; i<settings['cols_in_level'][l]; i++) visibles[l][COL][i] = false;
 		}//endfor levels
 		
 		// draw the images
@@ -84,7 +85,7 @@ jQuery.fn.tileviewer = function(options) {
 			ctx.fillRect(0,0,settings['width'],settings['height']);
 			for (var r=0; r<settings['rows_in_level'][cl]; r++) {
 				for (var c=0; c<settings['cols_in_level'][cl]; c++) {
-					if (visibles[cl][row][r] && visibles[cl][col][c]) {
+					if (visibles[cl][ROW][r] && visibles[cl][COL][c]) {
 						var i = r*settings['cols_in_level'][cl]+c;
 						if (loaded[cl][i]) {
 							ctx.drawImage(images[cl][i], c*settings['tile_size']+ox-0.5, r*settings['tile_size']+oy-0.5, settings['tile_size']+1, settings['tile_size']+1);
@@ -97,12 +98,12 @@ jQuery.fn.tileviewer = function(options) {
 		// update the visible and invisible images 
 		function update_visibles() {
 			rows = settings['rows_in_level'][cl]; cols = settings['cols_in_level'][cl];
-			for (var r=0; r<rows; r++) visibles[cl][row][r] = ((0<r*settings['tile_size']+settings['tile_size']+oy) && (r*settings['tile_size']+oy<settings['height']));
-			for (var c=0; c<cols; c++) visibles[cl][col][c] = ((0<c*settings['tile_size']+settings['tile_size']+ox) && (c*settings['tile_size']+ox<settings['width']));
+			for (var r=0; r<rows; r++) visibles[cl][ROW][r] = ((0<r*settings['tile_size']+settings['tile_size']+oy) && (r*settings['tile_size']+oy<settings['height']));
+			for (var c=0; c<cols; c++) visibles[cl][COL][c] = ((0<c*settings['tile_size']+settings['tile_size']+ox) && (c*settings['tile_size']+ox<settings['width']));
 			for (var r=0; r<rows; r++) {
 				for (var c=0; c<cols; c++) {
 					var i = r*cols+c;
-					if (visibles[cl][row][r] && visibles[cl][col][c]) {
+					if (visibles[cl][ROW][r] && visibles[cl][COL][c]) {
 						if (images[cl][i].src == blank) {
 							images[cl][i].src = filenames[cl][i];
 							loaded[cl][i] = false;

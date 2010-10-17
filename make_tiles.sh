@@ -9,7 +9,7 @@ This script will create convert the submitted file into a collection of tiles fo
 Options:
 	-h	Shows this message
 	-i	Source file name (required)
-	-o	Output directory (required)
+	-o	Output directory (required).  This directory will be irrevocably removed if it already exists!
 	-t	Output file type, "jpg" by defult.  May be anything ImageMagic supports as an image output file (jpg, png, gif)
 	-b	Background color, "#444" by default.
 	-s	Tile size in pixels, 256 by default
@@ -53,12 +53,11 @@ if [[ "$source" == "none" ]] || [[ "$outputdir" == "none" ]]; then
 	usage
 	exit 1
 fi
-echo $outputdir
 
 rm -r "$outputdir"
 mkdir "$outputdir"
 
-args="-monitor -define registry:temporary-path=/var/tmp/image "
+args="-monitor "
 args=$args"-background "$background" -gravity center "
 
 source_width=`identify -format "%w" $source`
@@ -92,7 +91,8 @@ done
 
 args=$args" -delete 0 null:"
 
-echo "about to run convert "$args
+echo "about to run"
+echo "convert "$args
 echo
 
 echo $args | xargs convert
@@ -101,7 +101,6 @@ echo
 echo "Writing json file"
 cat > "$outputdir/settings.json" << ENDJS
 {
-	"root_dir" : "$outputdir", 
 	"tile_size" : $tile_size,
 	"levels" : $level,
 	"tiles_in_level" : [`echo ${tiles_in_level[@]} | sed "s/ /, /g"`],
@@ -111,3 +110,4 @@ cat > "$outputdir/settings.json" << ENDJS
 	"background_color" : "$background"
 }
 ENDJS
+echo
