@@ -1,10 +1,59 @@
 #!/bin/bash
 
-tile_size=256
-source="photo.jpg"
-outputdir="./photo"
-background="#444"
+usage() {
+	cat << EOF
+usage $0 options
+
+This script will create convert the submitted file into a collection of tiles for use with the TileViewer jquery plugin.
+
+Options:
+	-h	Shows this message
+	-i	Source file name (required)
+	-o	Output directory (required)
+	-t	Output file type, "jpg" by defult.  May be anything ImageMagic supports as an image output file (jpg, png, gif)
+	-b	Background color, "#444" by default.
+	-s	Tile size in pixels, 256 by default
+	
+EOF
+}
+
+source="none"
+outputdir="none"
 type="jpg"
+background="#444"
+tile_size=256
+while getopts ":hi:o:t:b:s:" OPTION; do
+	case $OPTION in
+		h)
+			usage
+			exit 1
+			;;
+		i)
+			source=$OPTARG
+			;;
+		o)
+			outputdir=`echo $OPTARG | sed 's_/$__'`
+			;;
+		t)
+			type=$OPTARG
+			;;
+		b)
+			background=$OPTARG
+			;;
+		s)
+			tile_size=$OPTARG
+			;;
+		?)
+			usage
+			exit 1
+			;;
+	esac
+done
+if [[ "$source" == "none" ]] || [[ "$outputdir" == "none" ]]; then 
+	usage
+	exit 1
+fi
+echo $outputdir
 
 rm -r "$outputdir"
 mkdir "$outputdir"
