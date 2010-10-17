@@ -4,7 +4,7 @@ usage() {
 	cat << EOF
 usage $0 options
 
-This script will create convert the submitted file into a collection of tiles for use with the TileViewer jquery plugin.
+This script will convert the submitted file into a collection of tiles for use with the TileViewer jquery plugin.
 
 Options:
 	-h	Shows this message
