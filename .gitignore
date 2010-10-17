@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+
+#the following is for the image used for testing, photo.jpg
+#the output directory for the test image
+photo/

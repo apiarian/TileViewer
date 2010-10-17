@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Viewer</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="./TileViewer/jquery.tileviewer.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#c').tileviewer({imagedir:'./photo'});
+});
+</script>
+</head>
+<body>
+	<div id="c" style="position:relative; width:800px; height:400px;" class="noSelect"></div>
+<br/>
+<div> 
+<p>A little demo of a project I've been working on.  A jQuery plugin which displays large images that have been precut into tiles.  This lets the user look at the large image in the browser without having to download it.</p>
+<p>If you don't see anything, you should probably update your browser.  The latesst Google Chrome, Safari, Firefox, and Opera should work well enough.  Internet Explorer? Forget about it.  Maybe once they finally get to version 9?</p>
+<ul>
+<li>Click the Plus or Minus Signs to Zoom In or Out</li>
+<li>Double Click to Zoom In</li>
+<li>Conrol or Command Double Click to Zoom Out</li>
+<li>Hold the Left Mouse Button and Drag to Pan</li>
+<li>The image was taken and compiled by KM</li>
+</ul>
+</div>
+</body>
+</html>
