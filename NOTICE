@@ -1,0 +1,8 @@
+TileViewer Copyright 2010 Aleksandr Pasechnik
+
+This product includes software developed by
+Aleksandr Pasechnik (http://github.com/russkey)
+
+The Jquery plugin component uses the No Select Plugin
+developed by Chris Barr which may be found at
+	http://chris-barr.com/entry/disable_text_selection_with_jquery/

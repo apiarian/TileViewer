@@ -6,9 +6,16 @@ A jQuery plugin (TileViewer) and supporting script (make_tiles.sh).
 make_tiles.sh
 -------------
 
-A bash script which uses [ImageMagick][im] to split a large image into a number of tiles at various zoom levels.  These images are saved along with a setting.json file in the output directory.  The tile size of 256 pixels was chose somewhat at random, though smaller sizes tend to cause a computational hit, while larger sizes take longer to load.  For most photos jpg is the more compact output form.  [Python][py], /usr/bin/bc, and simple bash math is used in computations.
+A bash script which uses [ImageMagick][im] to split a large image into
+a number of tiles at various zoom levels. These images are saved along
+with a setting.json file in the output directory. The tile size of 256
+pixels was chose somewhat at random, though smaller sizes tend to cause
+a computational hit, while larger sizes take longer to load. For most
+photos jpg is the more compact output form. [Python][py], /usr/bin/bc,
+and simple bash math is used in computations.
 
-*Please note* that the output directory will be deleted by the script before it creates any images.
+*Please note* that the output directory will be deleted by the script
+before it creates any images.
 
 ---
     usage ./make_tiles.sh options
@@ -31,6 +38,16 @@ A bash script which uses [ImageMagick][im] to split a large image into a number 
 jquery.tileviewer.js
 --------------------
 
-The [jQuery][jq] Plugin.  In general it simply requires a div with relative or absolute positioning and a set height and width.  An example of how to use this plugin can be found in the index.html code.  The imagedir is a *required* parameter.  This should point to the directory which contains the output of the make_tiles.sh script.  Do not include a trailing slash in the imagedir.
+The [jQuery][jq] Plugin. In general it simply requires a div with
+relative or absolute positioning and a set height and width. An example
+of how to use this plugin can be found in the index.html code. The
+imagedir is a *required* parameter. This should point to the directory
+which contains the output of the make_tiles.sh script. Do not include a
+trailing slash in the imagedir.
 
 [jq]: http://jquery.com/
+
+Licensing
+---------
+
+This project is distributed under the Apache License version 2.
