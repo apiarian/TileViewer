@@ -51,8 +51,8 @@ jQuery.fn.tileviewer = function(options) {
 		// set up canvas elements
 		var canvas = $('<canvas width="'+settings['width']+'" height="'+settings['height']+'" style="position:absolute; top:0; left:0;"></canvas>');
 		var zoomincanvas = $('<canvas width="'+settings['zoomwidth']+'" height="'+settings['zoomwidth']+'" style="position:absolute; top:0; left:0; cursor:pointer;"></canvas>');
-		var zoomcanvas = $('<canvas width="'+settings['zoomwidth']+'" height="'+settings['zoomheight']+'" style="position:absolute; top:'+settings['zoomwidth']+'; left:0;"></canvas>');
-		var zoomoutcanvas = $('<canvas width="'+settings['zoomwidth']+'" height="'+settings['zoomwidth']+'" style="position:absolute; top:'+(settings['zoomwidth']+settings['zoomheight'])+'; left:0; cursor:pointer"></canvas>')
+		var zoomcanvas = $('<canvas width="'+settings['zoomwidth']+'" height="'+settings['zoomheight']+'" style="position:absolute; top:'+settings['zoomwidth']+'px; left:0;"></canvas>');
+		var zoomoutcanvas = $('<canvas width="'+settings['zoomwidth']+'" height="'+settings['zoomwidth']+'" style="position:absolute; top:'+(settings['zoomwidth']+settings['zoomheight'])+'px; left:0; cursor:pointer"></canvas>')
 		thisDiv.append(canvas).append(zoomincanvas).append(zoomcanvas).append(zoomoutcanvas);
 		
 		// get contexts
