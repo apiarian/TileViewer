@@ -22,7 +22,9 @@
 <script type="text/javascript" src="./TileViewer/jquery.tileviewer.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#imagesHere').tileviewer({imagedir:'./photo'});
+	$('#imagesHere').tileviewer({
+		imagedir:'./photo',
+		settings: './photo/settings.json'});
 });
 </script>
 </head>

@@ -43,7 +43,7 @@ jQuery.fn.tileviewer = function(options) {
 		alert('ERROR: no image directory!');
 		return;
 	}
-	$.getJSON(settings['imagedir']+'/settings.json', function(data) {
+	$.getJSON(settings['settings'], function(data) {
 		settings = $.extend(settings,data)
 		// global indexes
 		var ROW=0; var COL=1;
